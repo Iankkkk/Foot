@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        text = (TextView)findViewById(R.id.text);
+        text = findViewById(R.id.text);
         mQueue = Volley.newRequestQueue(this);
 
         jsonTest();
@@ -48,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
                     for(int i=0; i < 10; i++)
                     {
-                        JSONObject competition = jsonArray.getJSONObject(i);
-                        String nameCompetition = competition.getString("name");
-                        text.append(nameCompetition +"\n");
+                        JSONObject squad = jsonArray.getJSONObject(i);
+                        String namePlayer = squad.getString("name");
+                        String position = squad.getString("position");
+                        text.append(namePlayer +"   "+position+"\n");
                     }
 
 
