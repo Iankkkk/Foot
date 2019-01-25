@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONArray jsonArray = response.getJSONArray("squad");
 
-                    for(int i=0; i < 23; i++)
+                    for(int i=0; i < 10; i++)
                     {
                         JSONObject competition = jsonArray.getJSONObject(i);
                         String nameCompetition = competition.getString("name");
