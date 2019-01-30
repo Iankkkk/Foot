@@ -2,6 +2,7 @@ package com.yfoughali.foot;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -20,8 +21,9 @@ import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView text;
+    private TextView text, text2;
     private  RequestQueue mQueue;
+    private Button button;
 
 
     @Override
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         text = findViewById(R.id.text);
+        text2 = findViewById(R.id.text2);
         mQueue = Volley.newRequestQueue(this);
+        button = findViewById(R.id.calendrier);
 
         jsonTest();
 
@@ -39,20 +43,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void jsonTest()
     {
-        String url = "https://api.myjson.com/bins/1clssc";
+        String url = "https://api.myjson.com/bins/n63l4";
+        String apiKey = BuildConfig.ApiKey; // securisation de la clé d'API, ajoutée dans gradel.properties et build.gradle
+
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray jsonArray = response.getJSONArray("squad");
+                    JSONArray jsonArray = response.getJSONArray("scorers");
 
-                    for(int i=0; i < 10; i++)
-                    {
-                        JSONObject squad = jsonArray.getJSONObject(i);
-                        String namePlayer = squad.getString("name");
-                        String position = squad.getString("position");
-                        text.append(namePlayer +"   "+position+"\n");
-                    }
+
+                        for(int i = 0; i < 10; i++)
+                        {
+                            JSONObject buteurs = jsonArray.getJSONObject(i);
+                            JSONObject player = buteurs.getJSONObject("player");
+                            String namePlayer = player.getString("name");
+                            int nbGoals = buteurs.getInt("numberOfGoals");
+                            text.append(namePlayer + "   " +nbGoals + "\n");
+                        }
+
 
 
 

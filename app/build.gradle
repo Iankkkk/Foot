@@ -9,11 +9,20 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
+        debug {
+            buildConfigField 'String', "ApiKey", Foot_ApiKey
+            resValue 'string', "api_key", Foot_ApiKey
+        }
+
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "ApiKey", Foot_ApiKey
+            resValue 'string', "api_key", Foot_ApiKey
         }
     }
 }
