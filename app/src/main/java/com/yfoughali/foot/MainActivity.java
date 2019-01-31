@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject team = buteurs.getJSONObject("team");
                             String nameTeam = team.getString("name");
                             int nbGoals = buteurs.getInt("numberOfGoals");
-                            text.append(namePlayer + "  "+ nameTeam +"   " +nbGoals + "\n");
+                            text.append(namePlayer + "  "+ nameTeam +"  " +nbGoals + "\n");
                         }
 
 
