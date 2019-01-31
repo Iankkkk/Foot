@@ -30,34 +30,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonL1"
-        android:text="LIGUE 1"
-        android:layout_marginTop="440dp"
-        android:layout_marginLeft="270dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonSA"
-        android:text="SERIE A"
+        android:id="@+id/buttonPL"
+        android:text="PL"
         android:layout_marginTop="400dp"
         android:layout_marginLeft="270dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLIGA"
-        android:text="LIGA"
-        android:layout_marginTop="360dp"
-        android:layout_marginLeft="270dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonBL"
-        android:text="BUNDES"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="270dp"/>
 
 
 
