@@ -61,7 +61,7 @@ public class SAActivity extends AppCompatActivity {
                         JSONObject team = buteurs.getJSONObject("team");
                         String nameTeam = team.getString("name");
                         int nbGoals = buteurs.getInt("numberOfGoals");
-                        text.append(namePlayer + "  " + nameTeam + "   " + nbGoals + "\n");
+                        text.append(namePlayer + "  " + nameTeam + "  " + nbGoals + "\n");
                     }
 
 
@@ -82,7 +82,7 @@ public class SAActivity extends AppCompatActivity {
             //Methode permettant de mettre la clé d'api dans le header
             public Map getHeaders() throws AuthFailureError {
                 HashMap headers = new HashMap();
-                String apiKey = BuildConfig.ApiKey; // securisation de la clé d'API, ajoutée dans gradle.properties et build.gradle
+                String apiKey = BuildConfig.ApiKey; // sécurisation de la clé d'API, ajoutée dans gradle.properties et build.gradle
                 headers.put("X-Auth-Token", apiKey);
                 return headers;
 
