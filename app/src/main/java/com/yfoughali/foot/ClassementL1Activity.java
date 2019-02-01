@@ -22,7 +22,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LIGAActivity extends AppCompatActivity {
+public class ClassementL1Activity extends AppCompatActivity {
     private TextView text, text2;
     private RequestQueue mQueue;
     private Button buttonPL;
@@ -30,7 +30,7 @@ public class LIGAActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_liga);
+        setContentView(R.layout.activity_classement_l1);
 
         text = findViewById(R.id.text);
         text2 = findViewById(R.id.text2);
@@ -39,28 +39,25 @@ public class LIGAActivity extends AppCompatActivity {
 
         buttonPL.setOnClickListener(PLlistener);
 
-        affichageClassementButeurs();
+        affichageClassement();
     }
 
-    private void affichageClassementButeurs() {
-        String url = "https://api.football-data.org/v2/competitions/PD/scorers?limit=15"; // url de la requete, ?limit=15 changement du nombre de buteurs affichés
+    private void affichageClassement() {
+        String url = "https://api.football-data.org/v2/competitions/FL1/standings";
 
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray jsonArray = response.getJSONArray("scorers");
+                    JSONObject jsonObject = response.getJSONObject("competition");
+                    String nameCompetition = jsonObject.getString("name");
+                    text.setText(nameCompetition);
+
+                    for (int i = 0; i < 20; i++) {
 
 
-                    for (int i = 0; i < 15; i++) {
-                        JSONObject buteurs = jsonArray.getJSONObject(i);
-                        JSONObject player = buteurs.getJSONObject("player");
-                        String namePlayer = player.getString("name");
-                        JSONObject team = buteurs.getJSONObject("team");
-                        String nameTeam = team.getString("name");
-                        int nbGoals = buteurs.getInt("numberOfGoals");
-                        text.append(i+1 +") " + namePlayer + "  " + nameTeam + "  " + nbGoals + "\n");
+
                     }
 
 
@@ -94,7 +91,7 @@ public class LIGAActivity extends AppCompatActivity {
     private View.OnClickListener PLlistener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent MainActivity = new Intent(LIGAActivity.this, MainActivity.class);
+            Intent MainActivity = new Intent(ClassementL1Activity.this, MainActivity.class);
             startActivity(MainActivity);
 
         }

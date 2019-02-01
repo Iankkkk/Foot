@@ -21,7 +21,8 @@
         <activity android:name=".L1Activity" />
         <activity android:name=".SAActivity" />
         <activity android:name=".LIGAActivity" />
-        <activity android:name=".BLActivity"></activity>
+        <activity android:name=".BLActivity" />
+        <activity android:name=".ClassementL1Activity"></activity>
     </application>
 
 </manifest>

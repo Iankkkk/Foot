@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void affichageClassementButeurs()
     {
-        String url = "https://api.football-data.org/v2/competitions/PL/scorers";
+        String url = "https://api.football-data.org/v2/competitions/PL/scorers?limit=15"; // url de la requete, ?limit=15 changement du nombre de buteurs affichés
 
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray jsonArray = response.getJSONArray("scorers");
 
 
-                        for(int i = 0; i < 10; i++)
+                        for(int i = 0; i < 15; i++)
                         {
                             JSONObject buteurs = jsonArray.getJSONObject(i);
                             JSONObject player = buteurs.getJSONObject("player");
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject team = buteurs.getJSONObject("team");
                             String nameTeam = team.getString("name");
                             int nbGoals = buteurs.getInt("numberOfGoals");
-                            text.append(namePlayer + "  "+ nameTeam +"  " +nbGoals + "\n");
+                            text.append(i+1 +") " + namePlayer + "  " + nameTeam + "  " + nbGoals + "\n");
                         }
 
 

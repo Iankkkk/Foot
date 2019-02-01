@@ -26,7 +26,7 @@ public class L1Activity extends AppCompatActivity {
 
     private TextView text, text2;
     private RequestQueue mQueue;
-    private Button buttonPL;
+    private Button buttonPL, buttonClassement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +36,17 @@ public class L1Activity extends AppCompatActivity {
         text = findViewById(R.id.text);
         text2 = findViewById(R.id.text2);
         buttonPL = findViewById(R.id.buttonPL);
+        buttonClassement = findViewById(R.id.buttonClassement);
         mQueue = Volley.newRequestQueue(this);
 
         buttonPL.setOnClickListener(PLlistener);
+        buttonClassement.setOnClickListener(ClassementListener);
 
         affichageClassementButeurs();
     }
 
     private void affichageClassementButeurs() {
-        String url = "https://api.football-data.org/v2/competitions/FL1/scorers";
+        String url = "https://api.football-data.org/v2/competitions/FL1/scorers?limit=15"; // url de la requete, ?limit=15 changement du nombre de buteurs affichés
 
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -54,14 +56,14 @@ public class L1Activity extends AppCompatActivity {
                     JSONArray jsonArray = response.getJSONArray("scorers");
 
 
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < 15; i++) {
                         JSONObject buteurs = jsonArray.getJSONObject(i);
                         JSONObject player = buteurs.getJSONObject("player");
                         String namePlayer = player.getString("name");
                         JSONObject team = buteurs.getJSONObject("team");
                         String nameTeam = team.getString("name");
                         int nbGoals = buteurs.getInt("numberOfGoals");
-                        text.append(namePlayer + "  " + nameTeam + "   " + nbGoals + "\n");
+                        text.append(i+1 +") " + namePlayer + "  " + nameTeam + "  " + nbGoals + "\n");
                     }
 
 
@@ -97,6 +99,15 @@ public class L1Activity extends AppCompatActivity {
         public void onClick(View v) {
             Intent MainActivity = new Intent(L1Activity.this, MainActivity.class);
             startActivity(MainActivity);
+
+        }
+    };
+
+    private View.OnClickListener ClassementListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent ClassementL1Activity = new Intent(L1Activity.this, ClassementL1Activity.class);
+            startActivity(ClassementL1Activity);
 
         }
     };
